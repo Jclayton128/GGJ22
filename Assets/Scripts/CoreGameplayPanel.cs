@@ -5,14 +5,26 @@ using TMPro;
 
 public class CoreGameplayPanel : UI_Panel
 {
+    [SerializeField] TextMeshProUGUI mainTMP = null;
     [SerializeField] TextMeshProUGUI optionATMP = null;
     [SerializeField] TextMeshProUGUI optionBTMP = null;
+
+    CoreGameLooper cgl;
+
+    protected override void Start()
+    {
+        base.Start();
+        cgl = FindObjectOfType<CoreGameLooper>();
+    }
+
 
     #region New Card Loading
 
     public void DisplayNewCard(Card newCard)
     {
-
+        mainTMP.text = newCard.MainProblemText;
+        optionATMP.text = newCard.OptionAText;
+        optionBTMP.text = newCard.OptionBText;
     }
 
     #endregion
@@ -21,15 +33,13 @@ public class CoreGameplayPanel : UI_Panel
     public void HandlePress_OptionA()
     {
         Debug.Log("option A was selected");
-        //Procee Option A selection
-
-        gcRef.SetNewState(GameController.State.Endgame);  // For testing.
+        cgl.SelectOptionA();
     }
 
     public void HandlePress_OptionB()
     {
         Debug.Log("option B was selected");
-        //Process Option B selection
+        cgl.SelectOptionB();
     }
 
     #endregion

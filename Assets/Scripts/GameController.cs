@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
 {
     public enum State { Start, CoreGameplay, Endgame, Settings};
     UI_Controller uic;
-    Action OnGameStart;
+    public Action OnStartNewGame;
 
     //state
     State previousState;
@@ -81,7 +81,7 @@ public class GameController : MonoBehaviour
                 // Do things to set up the core gameplay state
                 // This might include starting a brand new game, but also might be entering mid-game,
                 // ...especially if coming back from the settings menu mid-game.
-                OnGameStart?.Invoke();
+                OnStartNewGame?.Invoke();
                 break;
 
             case State.Endgame:

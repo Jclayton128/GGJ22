@@ -19,6 +19,7 @@ public class UI_Controller : MonoBehaviour
         UpdateUIWithNewState(GameController.State.Start); //Force UI to start in Start state
     }
 
+    #region Helpers
     private void FindPanels()
     {
         foreach (var panel in allPanels)
@@ -39,6 +40,11 @@ public class UI_Controller : MonoBehaviour
             panel.ShowHideElements(false);
         }
     }
+
+    #endregion
+
+
+    #region
 
     public void UpdateUIWithNewState(GameController.State newState)
     {
@@ -63,4 +69,11 @@ public class UI_Controller : MonoBehaviour
                 return;
         }
     }
+
+    public void UpdateCoreGameplayPanelWithCard(Card newCard)
+    {
+        coreGameplayPanel.DisplayNewCard(newCard);
+    }
+
+    #endregion
 }
