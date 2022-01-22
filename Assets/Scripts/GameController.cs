@@ -20,6 +20,11 @@ public class GameController : MonoBehaviour
 
     #region Public Methods
 
+    /// <summary>
+    /// Workhorse method of the Game Controller. Allows other classes to switch the state. Privately handles
+    /// the entry and exit work needed for any particular state.
+    /// </summary>
+    /// <param name="newState"></param>
     public void SetNewState(State newState)
     {
         if (newState == currentState)
@@ -39,10 +44,17 @@ public class GameController : MonoBehaviour
         uic.UpdateUIWithNewState(newState);
     }
 
-    public void SetStateAsSettings() // this is needed by the persistent settings button, which can't take in an enum
+    /// <summary>
+    /// This is needed by the persistent settings button in since buttons can't take in enums within the editor.
+    /// </summary>
+    public void SetStateAsSettings() 
     {
         SetNewState(State.Settings);
     }
+
+    /// <summary>
+    /// This allows the state to rollback to the previous state, like a back button
+    /// </summary>
     public void RequestReturnToPreviousState()
     {
         //if (previousState == State.Endgame)
