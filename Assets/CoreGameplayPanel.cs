@@ -21,11 +21,15 @@ public class CoreGameplayPanel : UI_Panel
     public void HandlePress_OptionA()
     {
         Debug.Log("option A was selected");
+        //Procee Option A selection
+
+        gcRef.SetNewState(GameController.State.Endgame);  // For testing.
     }
 
     public void HandlePress_OptionB()
     {
         Debug.Log("option B was selected");
+        //Process Option B selection
     }
 
     #endregion

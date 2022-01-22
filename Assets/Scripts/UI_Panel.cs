@@ -7,11 +7,19 @@ using UnityEngine;
 public class UI_Panel : MonoBehaviour
 {
     protected List<GameObject> elements = new List<GameObject>();
+    protected GameController gcRef;
 
     protected virtual void Awake()
     {
+
         FindAllChildElements();
         HideAllChildElements();
+
+    }
+
+    protected virtual void Start()
+    {
+        gcRef = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     private void FindAllChildElements()

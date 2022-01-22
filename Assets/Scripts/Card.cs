@@ -7,14 +7,20 @@ public struct Card
     public string MainProblemText;
     public string OptionAText;
     public string OptionBText;
+    public ParameterTracker.Parameter OptionAOutcome;
+    public ParameterTracker.Parameter OptionBOutcome;
 
-    public Card(string mainProblemText, string optionAText, string optionBText)
+    public Card(
+        string mainProblemText, 
+        string optionAText, 
+        string optionBText,
+        ParameterTracker.Parameter optionAOutcome,
+        ParameterTracker.Parameter optionBOutcome)
     {
         this.MainProblemText = mainProblemText;
         this.OptionAText = optionAText;
         this.OptionBText = optionBText;
-
-        //Option A outcome = ...
-        //Option B outcome = ...
+        this.OptionAOutcome = optionAOutcome;
+        this.OptionBOutcome = optionBOutcome;
     }
 }
