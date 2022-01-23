@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
         EnterState(currentState);
         ExitState(previousState);
 
-        uic.UpdateUIWithNewState(newState);
+
     }
 
     /// <summary>
@@ -76,6 +76,7 @@ public class GameController : MonoBehaviour
     #region State Helpers
     private void EnterState(State newState)
     {
+        uic.UpdateUIWithNewState(newState);
         switch (newState)
         {
             case State.Start:

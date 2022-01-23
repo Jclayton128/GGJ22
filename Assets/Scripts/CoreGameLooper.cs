@@ -29,15 +29,15 @@ public class CoreGameLooper : MonoBehaviour
         DrawNewCard();
     }
 
-    private void DrawNewCard()
+
+    #region Public Methods
+    public void DrawNewCard()
     {
         string[] dummyKeywordsForTesting = { "TEST1", "TEST2" };
         activeCard = cs.GetRandomCard(0, dummyKeywordsForTesting);
 
         uic.UpdateCoreGameplayPanelWithCard(activeCard);
     }
-
-    #region Public Methods
 
     public void SelectOptionA()
     {
@@ -49,8 +49,9 @@ public class CoreGameLooper : MonoBehaviour
         // record the keyword of Option A in case it is referenced by a future Card
 
         //Debug.Log($"{activeCard.OptionAOutcome.Parameter} changed by {activeCard.OptionAOutcome.Magnitude}");
-        Debug.Log(activeCard.OptionA.ResultText);
-        DrawNewCard();
+        //Debug.Log(activeCard.OptionA.ResultText);
+        uic.UpdateCoreGameplayPanelWithOutcome(activeCard.OptionA.ResultText);
+        //DrawNewCard();
     }
 
     public void SelectOptionB()
@@ -63,8 +64,9 @@ public class CoreGameLooper : MonoBehaviour
         // record the keyword of Option B in case it is referenced by a future Card
 
         //Debug.Log($"{activeCard.OptionAOutcome.Parameter} changed by {activeCard.OptionAOutcome.Magnitude}");
-        Debug.Log(activeCard.OptionB.ResultText);
-        DrawNewCard();
+        //Debug.Log(activeCard.OptionB.ResultText);
+        uic.UpdateCoreGameplayPanelWithOutcome(activeCard.OptionB.ResultText);
+        //DrawNewCard();
     }
 
     // Modify all parameter values. Allows an option to affect multiple parameters.

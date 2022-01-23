@@ -77,11 +77,17 @@ public class UI_Controller : MonoBehaviour
     {
         coreGameplayPanel.DisplayNewCard(newCard);
     }
+    public void UpdateCoreGameplayPanelWithOutcome(string outcome)
+    {
+        coreGameplayPanel.DisplayCardOutcome(outcome);
+    }
 
     public void UpdateCoreGameplayPanelWithParameterPack(ParameterPack newParameterPack)
     {
         coreGameplayPanel.UpdateParametersOnPanel(newParameterPack);
     }
+
+
 
 
     #endregion
