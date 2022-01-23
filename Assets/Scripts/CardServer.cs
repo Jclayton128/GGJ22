@@ -42,8 +42,8 @@ public class CardServer : MonoBehaviour
             string main = "This is an interesting ethical dilemma about cats.";
             string optA = "Traditional values are best!";
             string optB = "Out with the old, in with the new!";
-            Outcome optAOutcome = new Outcome(ParameterTracker.Parameter.Progressivism, -1);
-            Outcome optBOutcome = new Outcome(ParameterTracker.Parameter.Progressivism, 1);
+            Outcome optAOutcome = new Outcome(ParameterTracker.Parameter.Objectivity, -1);
+            Outcome optBOutcome = new Outcome(ParameterTracker.Parameter.Objectivity, 1);
             Card debugCard = new Card(main, optA, optB, optAOutcome, optBOutcome);
             return debugCard;
         }
@@ -52,8 +52,8 @@ public class CardServer : MonoBehaviour
             string main = "This is a tough decision between an old man and a young girl";
             string optA = "Age over beauty!";
             string optB = "The young are our future!";
-            Outcome optAOutcome = new Outcome(ParameterTracker.Parameter.Materialism, -1);
-            Outcome optBOutcome = new Outcome(ParameterTracker.Parameter.Materialism, 1);
+            Outcome optAOutcome = new Outcome(ParameterTracker.Parameter.Tradition, -1);
+            Outcome optBOutcome = new Outcome(ParameterTracker.Parameter.Tradition, 1);
             Card debugCard = new Card(main, optA, optB, optAOutcome, optBOutcome);
             return debugCard;
         }

@@ -9,7 +9,12 @@ public class CoreGameplayPanel : UI_Panel
     [SerializeField] TextMeshProUGUI optionATMP = null;
     [SerializeField] TextMeshProUGUI optionBTMP = null;
 
+    [SerializeField] TextMeshProUGUI[] parameterTMPs = null;
+
     CoreGameLooper cgl;
+
+    string[] parameterPrefixes = { "Com: ", "Tra: ", "Exp: ", "Obj: " };
+
 
     protected override void Start()
     {
@@ -18,13 +23,23 @@ public class CoreGameplayPanel : UI_Panel
     }
 
 
-    #region New Card Loading
+    #region UI Updates
 
     public void DisplayNewCard(Card newCard)
     {
         mainTMP.text = newCard.MainProblemText;
         optionATMP.text = newCard.OptionAText;
         optionBTMP.text = newCard.OptionBText;
+    }
+
+    public void UpdateParametersOnPanel(ParameterPack newParameterPack)
+    {
+        for (int i = 0; i < parameterTMPs.Length; i++)
+        {
+            parameterTMPs[i].text = parameterPrefixes[i] + newParameterPack.Parameters[i].ToString();
+        }
+
+        // Push Colonist Count, and Tech, Morale, and Culture Levels to UI as well.
     }
 
     #endregion

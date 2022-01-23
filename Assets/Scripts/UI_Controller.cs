@@ -44,7 +44,7 @@ public class UI_Controller : MonoBehaviour
     #endregion
 
 
-    #region
+    #region Public Methods
 
     public void UpdateUIWithNewState(GameController.State newState)
     {
@@ -69,11 +69,20 @@ public class UI_Controller : MonoBehaviour
                 return;
         }
     }
+    #endregion
+
+    #region Passthrough Public Methods
 
     public void UpdateCoreGameplayPanelWithCard(Card newCard)
     {
         coreGameplayPanel.DisplayNewCard(newCard);
     }
+
+    public void UpdateCoreGameplayPanelWithParameterPack(ParameterPack newParameterPack)
+    {
+        coreGameplayPanel.UpdateParametersOnPanel(newParameterPack);
+    }
+
 
     #endregion
 }

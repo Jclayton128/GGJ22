@@ -8,6 +8,7 @@ public class CoreGameLooper : MonoBehaviour
     GameController gc;
     CardServer cs;
     UI_Controller uic;
+    ParameterTracker pt;
 
     //state
     Card activeCard;
@@ -19,6 +20,7 @@ public class CoreGameLooper : MonoBehaviour
 
         cs = FindObjectOfType<CardServer>();
         uic = FindObjectOfType<UI_Controller>();
+        pt = FindObjectOfType<ParameterTracker>();
     }
 
 
@@ -40,6 +42,9 @@ public class CoreGameLooper : MonoBehaviour
     public void SelectOptionA()
     {
         // implement outcome of Option A
+        Outcome outcome = activeCard.OptionAOutcome;
+        pt.ModifyParameterLevel(outcome.Parameter, outcome.Magnitude);
+
         // record the keyword of Option A in case it is referenced by a future Card
 
         Debug.Log($"{activeCard.OptionAOutcome.Parameter} changed by {activeCard.OptionAOutcome.Magnitude}");
@@ -49,6 +54,9 @@ public class CoreGameLooper : MonoBehaviour
     public void SelectOptionB()
     {
         // implement outcome of Option B
+        Outcome outcome = activeCard.OptionBOutcome;
+        pt.ModifyParameterLevel(outcome.Parameter, outcome.Magnitude);
+
         // record the keyword of Option B in case it is referenced by a future Card
 
         Debug.Log($"{activeCard.OptionAOutcome.Parameter} changed by {activeCard.OptionAOutcome.Magnitude}");
