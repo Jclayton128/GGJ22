@@ -8,7 +8,10 @@ public class CoreGameplayPanel : UI_Panel
     [SerializeField] TextMeshProUGUI mainTMP = null;
     [SerializeField] TextMeshProUGUI optionATMP = null;
     [SerializeField] TextMeshProUGUI optionBTMP = null;
-    [SerializeField] TextMeshProUGUI[] parameterTMPs = null;
+    [SerializeField] TextMeshProUGUI[] subjectiveParameterTMPs = null;
+    [SerializeField] TextMeshProUGUI monthsElapsedTMP = null;
+    [SerializeField] TextMeshProUGUI colonistCountTMP = null;
+
     [SerializeField] GameObject[] optionButtons = null;
     [SerializeField] GameObject acceptOutcomeButton = null;
 
@@ -24,11 +27,12 @@ public class CoreGameplayPanel : UI_Panel
     {
         base.Start();
         cgl = FindObjectOfType<CoreGameLooper>();
+        gcRef.OnStartNewGame += UpdateMonthsElapsed;
 
     }
 
 
-    #region UI Updates
+    #region Public UI Updates
 
     public void DisplayNewCard(Card newCard)
     {
@@ -44,14 +48,28 @@ public class CoreGameplayPanel : UI_Panel
         ChangeSubstate(Substate.ShowCardOutcome);
     }
 
-    public void UpdateParametersOnPanel(ParameterPack newParameterPack)
+    public void UpdateParametersOnPanel(Dictionary<ParameterTracker.Parameter, int> parameters)
     {
-        for (int i = 0; i < parameterTMPs.Length; i++)
+        for (int i = 0; i < subjectiveParameterTMPs.Length; i++)
         {
-            parameterTMPs[i].text = parameterPrefixes[i] + newParameterPack.Parameters[i].ToString();
+            subjectiveParameterTMPs[i].text = parameterPrefixes[i] + 
+parameters[(ParameterTracker.Parameter)i].ToString();  // Sheesh. If I have to write "parameter" one more time...
         }
 
-        // Push Colonist Count, and Tech, Morale, and Culture Levels to UI as well.
+        colonistCountTMP.text = "Colonists: " + parameters[ParameterTracker.Parameter.ColonistCount].ToString();
+
+        // [TODO] Need to find a nice way to expose this in the UI. Slider? Number? Iconography? Happy/sad face?
+        // techLevelTMP.text = parameters[ParameterTracker.Parameter.TechLevel].ToString();
+        // moraleTMP.text = parameters[ParameterTracker.Parameter.Morale].ToString();
+    }
+
+    public void UpdateMonthsElapsed()
+    {
+        int years = gcRef.MonthsElapsed / 12;
+        int months = gcRef.MonthsElapsed % 12;
+
+        monthsElapsedTMP.text = $"Time: {years}y {months}m";
+
     }
 
     #endregion
@@ -75,7 +93,7 @@ public class CoreGameplayPanel : UI_Panel
     }
     #endregion
 
-    #region Substate Helpers
+    #region UI Helpers
 
     private void ChangeSubstate(Substate newSubstate)
     {

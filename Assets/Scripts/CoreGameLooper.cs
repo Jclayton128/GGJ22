@@ -7,6 +7,7 @@ public class CoreGameLooper : MonoBehaviour
     //references
     GameController gc;
     CardServer cs;
+    CardPreparer cp;
     UI_Controller uic;
     ParameterTracker pt;
 
@@ -21,6 +22,9 @@ public class CoreGameLooper : MonoBehaviour
         cs = FindObjectOfType<CardServer>();
         uic = FindObjectOfType<UI_Controller>();
         pt = FindObjectOfType<ParameterTracker>();
+
+        cp = new CardPreparer();
+
     }
 
 
@@ -33,9 +37,8 @@ public class CoreGameLooper : MonoBehaviour
     #region Public Methods
     public void DrawNewCard()
     {
-        string[] dummyKeywordsForTesting = { "TEST1", "TEST2" };
-        activeCard = cs.GetRandomCard(0, dummyKeywordsForTesting);
-
+        activeCard = cp.GetCard(gc.CurrentPhase);
+        gc.IncrementQuestionCount();
         uic.UpdateCoreGameplayPanelWithCard(activeCard);
     }
 
@@ -50,6 +53,11 @@ public class CoreGameLooper : MonoBehaviour
 
         //Debug.Log($"{activeCard.OptionAOutcome.Parameter} changed by {activeCard.OptionAOutcome.Magnitude}");
         //Debug.Log(activeCard.OptionA.ResultText);
+
+        //History.RecordChoice(CardID, Choice)
+
+        cp.History.RecordChoice(activeCard.ID, Choice.A);
+
         uic.UpdateCoreGameplayPanelWithOutcome(activeCard.OptionA.ResultText);
         //DrawNewCard();
     }
@@ -58,6 +66,7 @@ public class CoreGameLooper : MonoBehaviour
     {
         // implement outcome of Option B
         ModifyParameters(activeCard.OptionB.ParameterChanges);
+
         //Outcome outcome = activeCard.OptionBOutcome;
         //pt.ModifyParameterLevel(outcome.Parameter, outcome.Magnitude);
 
@@ -65,6 +74,9 @@ public class CoreGameLooper : MonoBehaviour
 
         //Debug.Log($"{activeCard.OptionAOutcome.Parameter} changed by {activeCard.OptionAOutcome.Magnitude}");
         //Debug.Log(activeCard.OptionB.ResultText);
+
+        cp.History.RecordChoice(activeCard.ID, Choice.B);
+
         uic.UpdateCoreGameplayPanelWithOutcome(activeCard.OptionB.ResultText);
         //DrawNewCard();
     }
@@ -72,11 +84,16 @@ public class CoreGameLooper : MonoBehaviour
     // Modify all parameter values. Allows an option to affect multiple parameters.
     private void ModifyParameters(int[] parameterChanges)
     {
+        // For UI debug/testing only - remove me once Cards have +/- to ColonistCount!
+        pt.ModifyParameterLevel(ParameterTracker.Parameter.ColonistCount, -5);
+
         int n = Mathf.Min(System.Enum.GetValues(typeof(ParameterTracker.Parameter)).Length, parameterChanges.Length);
         for (int i = 0; i < n; i++)
         {
             pt.ModifyParameterLevel((ParameterTracker.Parameter)i, parameterChanges[i]);
         }
+
+        pt.PushParametersToUI();
     }
 
     #endregion

@@ -82,9 +82,14 @@ public class UI_Controller : MonoBehaviour
         coreGameplayPanel.DisplayCardOutcome(outcome);
     }
 
-    public void UpdateCoreGameplayPanelWithParameterPack(ParameterPack newParameterPack)
+    public void UpdateCoreGameplayPanelWithParameters(Dictionary<ParameterTracker.Parameter, int> parameters)
     {
-        coreGameplayPanel.UpdateParametersOnPanel(newParameterPack);
+        coreGameplayPanel.UpdateParametersOnPanel(parameters);
+    }
+
+    public void UpdateCoreGameplayPanelOnNewQuestionCount()
+    {
+        coreGameplayPanel.UpdateMonthsElapsed();
     }
 
 

@@ -8,58 +8,57 @@ public class ParameterTracker : MonoBehaviour
     GameController gcRef;
     UI_Controller uic;
 
-    public enum Parameter { Community, Tradition, Exploration, Objectivity}
+    public enum Parameter { Community, Tradition, Exploration, Objectivity, ColonistCount, TechLevel, Morale}
+
+    //settings
+    int startingColonistCount = 100;
+    int startingTechLevel = 100;
+    int startingMorale = 100;
 
     //state
-    Dictionary<Parameter, int> parameterLevels = new Dictionary<Parameter, int>();
+    Dictionary<Parameter, int> parameters = new Dictionary<Parameter, int>();
 
     private void Start()
     {
         gcRef = FindObjectOfType<GameController>();
-        gcRef.OnStartNewGame += ResetParameterLevels;
+        gcRef.OnStartNewGame += ResetParameters;
 
         uic = FindObjectOfType<UI_Controller>();
 
-        PrepareParameterLevelsDictionary();
+        PrepareParameters();
     }
 
-    private void PrepareParameterLevelsDictionary()
+    private void PrepareParameters()
     {
         int parameterOptions = Enum.GetNames(typeof (Parameter)).Length;
         for(int i = 0; i < parameterOptions; i++)
         {
-            parameterLevels.Add((Parameter)i, 0);
+            parameters.Add((Parameter)i, 0);
         }
-
     }
 
-    private void ResetParameterLevels()
+    private void ResetParameters()
     {
         int parameterOptions = Enum.GetNames(typeof(Parameter)).Length;
         for (int i = 0; i < parameterOptions; i++)
         {
-            parameterLevels[(Parameter)i] = 0;
+            parameters[(Parameter)i] = 0;
         }
-    }
 
-    private ParameterPack CreateParameterPack()
-    {
-        int p1 = parameterLevels[(Parameter)0];
-        int p2 = parameterLevels[(Parameter)1];
-        int p3 = parameterLevels[(Parameter)2];
-        int p4 = parameterLevels[(Parameter)3];
+        parameters[Parameter.ColonistCount] = startingColonistCount;
+        parameters[Parameter.TechLevel] = startingTechLevel;
+        parameters[Parameter.Morale] = startingMorale;
 
-        int dummyHolder = 123;
-
-        ParameterPack parameterPack = new ParameterPack(p1, p2, p3, p4, dummyHolder, dummyHolder, dummyHolder, dummyHolder);
-        return parameterPack;
+        uic.UpdateCoreGameplayPanelWithParameters(parameters);
     }
 
     public void ModifyParameterLevel(Parameter parameterToAdjust, int amountToAdjust)
     {
-        parameterLevels[parameterToAdjust] += amountToAdjust;
+        parameters[parameterToAdjust] += amountToAdjust;
+    }
 
-        ParameterPack newParameterPack = CreateParameterPack();
-        uic.UpdateCoreGameplayPanelWithParameterPack(newParameterPack);
+    public void PushParametersToUI()
+    {
+        uic.UpdateCoreGameplayPanelWithParameters(parameters);
     }
 }
