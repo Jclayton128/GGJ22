@@ -9,6 +9,8 @@ public class CardPreparer
 
     public Card GetCard(int phase)
     {
-        return CardData.Instance.Cards.GetNextCard(phase, history);
+        Card card = CardData.Instance.Cards.GetNextCard(phase, history);
+        // [TODO] Prepare card.
+        return card;
     }
 }
