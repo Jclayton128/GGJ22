@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
+public enum Choice { A, B, None }
+
 /// <summary>
-/// Tracks the variables that have been filled in so far.
+/// Tracks the variables that have been filled in so far and the choices that
+/// the player has made.
+/// 
+/// Call RecordChoice(CardID, Choice) when the player makes a choice.
 /// </summary>
 public class History
 {
 
     // Keys are ID.variableName:
     private Dictionary<string, string> variables = new Dictionary<string, string>();
+
+    private Dictionary<string, Choice> recordedChoices = new Dictionary<string, Choice>();
 
     private const int MaxReplacements = 20; // Safeguard to prevent infinite loops.
 
@@ -112,6 +119,29 @@ public class History
     {
         // Choose random from fields[2]+:
         return fields[Random.Range(2, fields.Length)];
+    }
+
+    public bool IsPrereqMet(string prereq, Choice prereqChoice)
+    {
+        if (string.IsNullOrEmpty(prereq)) return true;
+        if (!HasPlayedCard(prereq)) return false;
+        Choice recordedChoice = GetRecordedChoice(prereq);
+        return (prereqChoice == Choice.None) ? true : (recordedChoice == prereqChoice);
+    }
+
+    public bool HasPlayedCard(string cardID)
+    {
+        return recordedChoices.ContainsKey(cardID);
+    }
+
+    public Choice GetRecordedChoice(string cardID)
+    {
+        return HasPlayedCard(cardID) ? recordedChoices[cardID] : Choice.None;
+    }
+
+    public void RecordChoice(string cardID, Choice choice)
+    {
+        recordedChoices[cardID] = choice;
     }
 
 }
