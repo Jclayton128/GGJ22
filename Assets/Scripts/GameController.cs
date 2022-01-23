@@ -13,6 +13,11 @@ public class GameController : MonoBehaviour
     State previousState;
     State currentState;
 
+    /// <summary>
+    /// **This bool could be rendered obsolete by simply checking if number of questions presented to player is > zero;
+    /// </summary>
+    bool isCurrentlyInGame = false;
+
     void Start()
     {
         uic = FindObjectOfType<UI_Controller>();
@@ -78,11 +83,19 @@ public class GameController : MonoBehaviour
                 break;
 
             case State.CoreGameplay:
-                // Do things to set up the core gameplay state
-                // This might include starting a brand new game, but also might be entering mid-game,
-                // ...especially if coming back from the settings menu mid-game.
-                OnStartNewGame?.Invoke();
-                break;
+
+                if (isCurrentlyInGame)
+                {
+                    break;
+                }
+                else
+                {
+                    // Do things to set up the core gameplay state
+                    isCurrentlyInGame = true;
+                    OnStartNewGame?.Invoke();
+                    break;
+                }
+
 
             case State.Endgame:
                 // set up the endgame state
