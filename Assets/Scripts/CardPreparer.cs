@@ -1,16 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class CardPreparer
 {
 
-    private History history;
+    private History history = new History();
 
     public Card GetCard(int phase)
     {
-        Card card = CardData.Instance.Cards.GetNextCard(phase, history);
-        // [TODO] Prepare card.
+        Card template = CardData.Instance.Cards.GetNextCard(phase, history);
+        Card card = new Card(template);
+        card.ReplaceVariables(history);
         return card;
     }
 }

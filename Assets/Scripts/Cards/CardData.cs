@@ -11,6 +11,7 @@ public class CardData : ScriptableObject
     [SerializeField] private TextAsset firstNamesSource;
     [SerializeField] private TextAsset lastNamesSource;
     [SerializeField] private TextAsset jobsSource;
+    [SerializeField] private TextAsset objectsSource;
     [SerializeField] private TextAsset locationsSource;
     [SerializeField] private TextAsset nationalitiesSource;
     [SerializeField] private TextAsset cardsSource;
@@ -18,6 +19,7 @@ public class CardData : ScriptableObject
     [SerializeField] private string firstNameFallback = "John";
     [SerializeField] private string lastNameFallback = "Doe";
     [SerializeField] private string jobFallback = "Engineer";
+    [SerializeField] private string objectFallback = "climate controls";
     [SerializeField] private string locationFallback = "ship";
     [SerializeField] private string nationalityFallback = "human";
 
@@ -35,6 +37,7 @@ public class CardData : ScriptableObject
     public StringLibrary FirstNames { get; private set; }
     public StringLibrary LastNames { get; private set; }
     public StringLibrary Jobs { get; private set; }
+    public StringLibrary Objects { get; private set; }
     public StringLibrary Locations { get; private set; }
     public StringLibrary Nationalities { get; private set; }
     public CardLibrary Cards { get; private set; }
@@ -64,6 +67,7 @@ public class CardData : ScriptableObject
         FirstNames = new StringLibrary(firstNamesSource, firstNameFallback);
         LastNames = new StringLibrary(lastNamesSource, lastNameFallback);
         Jobs = new StringLibrary(jobsSource, jobFallback);
+        Objects = new StringLibrary(objectsSource, objectFallback);
         Locations = new StringLibrary(locationsSource, locationFallback);
         Nationalities = new StringLibrary(nationalitiesSource, nationalityFallback);
         Cards = new CardLibrary(cardsSource);

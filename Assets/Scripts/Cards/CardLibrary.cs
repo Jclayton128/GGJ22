@@ -5,7 +5,7 @@ using UnityEngine;
 public class CardLibrary
 {
 
-    //[TODO] Separate lists for each phase.
+    //[TODO] Separate lists for each phase. Choose card in correct phase that meets prereq.
     //private Dictionary<int, List<Card>> cards
 
     private List<Card> list = null;
@@ -40,7 +40,7 @@ public class CardLibrary
             string optBText = columns[10];
             string optBResult = columns[11];
             Option optionB = new Option(optBText, optBResult, new int[] { int.Parse(columns[12]), int.Parse(columns[13]), int.Parse(columns[14]), int.Parse(columns[15]) });
-            Card card = new Card(mainText, optionA, optionB);
+            Card card = new Card(id, prereq, mainText, optionA, optionB);
 
             list.Add(card);
         }

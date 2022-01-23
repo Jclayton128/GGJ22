@@ -11,11 +11,13 @@ public static class CSVUtility
     /// </summary>
     public static List<List<string>> ParseCSV(TextAsset csv)
     {
-        if (csv == null)
-        {
-            return new List<List<string>>();
-        }
-        var sourceLines =new List<string>(csv.text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries));
+        if (csv == null) return new List<List<string>>();
+        var sourceLines = new List<string>(csv.text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries));
+        return ParseLines(sourceLines);
+    }
+
+    private static List<List<string>> ParseLines(List<string> sourceLines)
+    { 
         var content = new List<List<string>>();
         while (sourceLines.Count > 0)
         {

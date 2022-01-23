@@ -15,11 +15,13 @@ MonoBehaviour:
   firstNamesSource: {fileID: 4900000, guid: 009d8a46231e77842ac556d7c6d531b8, type: 3}
   lastNamesSource: {fileID: 4900000, guid: a46aa85a87753d946a200edd82fdd940, type: 3}
   jobsSource: {fileID: 4900000, guid: 8c094ebdf2c17074aa2a9caa75aed3c9, type: 3}
+  objectsSource: {fileID: 4900000, guid: 189b9568dd4293d46814e548f2db9962, type: 3}
   locationsSource: {fileID: 4900000, guid: 28a9aca39a81324478eba9e1014df45a, type: 3}
   nationalitiesSource: {fileID: 4900000, guid: 5dd1d29c22a38d842b67e47bed2bf5bf, type: 3}
   cardsSource: {fileID: 4900000, guid: 77e80a5e0571e8d4595000ee4899b0b8, type: 3}
   firstNameFallback: John
   lastNameFallback: Doe
   jobFallback: Engineer
+  objectFallback: climate controls
   locationFallback: ship
   nationalityFallback: human
