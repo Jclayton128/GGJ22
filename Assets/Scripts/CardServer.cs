@@ -12,7 +12,8 @@ public class CardServer : MonoBehaviour
 
     void Start()
     {
-        cp = GetComponent<CardPreparer>();
+        cp = new CardPreparer();
+        //cp = GetComponent<CardPreparer>();
         //cp.OnCardsPrepared += GatherPreparedCards;
     }
 
@@ -34,29 +35,31 @@ public class CardServer : MonoBehaviour
     /// <returns></returns>
     public Card GetRandomCard(int currentPhase, string[] keywords)
     {
+        return cp.GetCard(currentPhase);
+
         //For debug
 
-        int rand = UnityEngine.Random.Range(0, 2);
-        if (rand == 0)
-        {
-            string main = "This is an interesting ethical dilemma about cats.";
-            string optA = "Traditional values are best!";
-            string optB = "Out with the old, in with the new!";
-            Outcome optAOutcome = new Outcome(ParameterTracker.Parameter.Objectivity, -1);
-            Outcome optBOutcome = new Outcome(ParameterTracker.Parameter.Objectivity, 1);
-            Card debugCard = new Card(main, optA, optB, optAOutcome, optBOutcome);
-            return debugCard;
-        }
-        else
-        {
-            string main = "This is a tough decision between an old man and a young girl";
-            string optA = "Age over beauty!";
-            string optB = "The young are our future!";
-            Outcome optAOutcome = new Outcome(ParameterTracker.Parameter.Tradition, -1);
-            Outcome optBOutcome = new Outcome(ParameterTracker.Parameter.Tradition, 1);
-            Card debugCard = new Card(main, optA, optB, optAOutcome, optBOutcome);
-            return debugCard;
-        }
+        //int rand = UnityEngine.Random.Range(0, 2);
+        //if (rand == 0)
+        //{
+        //    string main = "This is an interesting ethical dilemma about cats.";
+        //    string optA = "Traditional values are best!";
+        //    string optB = "Out with the old, in with the new!";
+        //    Outcome optAOutcome = new Outcome(ParameterTracker.Parameter.Objectivity, -1);
+        //    Outcome optBOutcome = new Outcome(ParameterTracker.Parameter.Objectivity, 1);
+        //    Card debugCard = new Card(main, optA, optB, optAOutcome, optBOutcome);
+        //    return debugCard;
+        //}
+        //else
+        //{
+        //    string main = "This is a tough decision between an old man and a young girl";
+        //    string optA = "Age over beauty!";
+        //    string optB = "The young are our future!";
+        //    Outcome optAOutcome = new Outcome(ParameterTracker.Parameter.Tradition, -1);
+        //    Outcome optBOutcome = new Outcome(ParameterTracker.Parameter.Tradition, 1);
+        //    Card debugCard = new Card(main, optA, optB, optAOutcome, optBOutcome);
+        //    return debugCard;
+        //}
 
 
     }

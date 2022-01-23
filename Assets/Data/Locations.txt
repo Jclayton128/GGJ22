@@ -1,0 +1,8 @@
+water reclamation center
+engine room
+cafeteria
+medical bay
+air scrubber facility
+genetic research lab
+childcare center
+waste processing plant

@@ -25,13 +25,13 @@ public class CoreGameLooper : MonoBehaviour
 
 
     private void SetupNewGame()
-    {        
+    {
         DrawNewCard();
     }
 
     private void DrawNewCard()
     {
-        string[] dummyKeywordsForTesting = { "TEST1", "TEST2" }; 
+        string[] dummyKeywordsForTesting = { "TEST1", "TEST2" };
         activeCard = cs.GetRandomCard(0, dummyKeywordsForTesting);
 
         uic.UpdateCoreGameplayPanelWithCard(activeCard);
@@ -42,25 +42,39 @@ public class CoreGameLooper : MonoBehaviour
     public void SelectOptionA()
     {
         // implement outcome of Option A
-        Outcome outcome = activeCard.OptionAOutcome;
-        pt.ModifyParameterLevel(outcome.Parameter, outcome.Magnitude);
+        ModifyParameters(activeCard.OptionA.ParameterChanges);
+        //Outcome outcome = activeCard.OptionAOutcome;
+        //pt.ModifyParameterLevel(outcome.Parameter, outcome.Magnitude);
 
         // record the keyword of Option A in case it is referenced by a future Card
 
-        Debug.Log($"{activeCard.OptionAOutcome.Parameter} changed by {activeCard.OptionAOutcome.Magnitude}");
+        //Debug.Log($"{activeCard.OptionAOutcome.Parameter} changed by {activeCard.OptionAOutcome.Magnitude}");
+        Debug.Log(activeCard.OptionA.ResultText);
         DrawNewCard();
     }
 
     public void SelectOptionB()
     {
         // implement outcome of Option B
-        Outcome outcome = activeCard.OptionBOutcome;
-        pt.ModifyParameterLevel(outcome.Parameter, outcome.Magnitude);
+        ModifyParameters(activeCard.OptionB.ParameterChanges);
+        //Outcome outcome = activeCard.OptionBOutcome;
+        //pt.ModifyParameterLevel(outcome.Parameter, outcome.Magnitude);
 
         // record the keyword of Option B in case it is referenced by a future Card
 
-        Debug.Log($"{activeCard.OptionAOutcome.Parameter} changed by {activeCard.OptionAOutcome.Magnitude}");
+        //Debug.Log($"{activeCard.OptionAOutcome.Parameter} changed by {activeCard.OptionAOutcome.Magnitude}");
+        Debug.Log(activeCard.OptionB.ResultText);
         DrawNewCard();
+    }
+
+    // Modify all parameter values. Allows an option to affect multiple parameters.
+    private void ModifyParameters(int[] parameterChanges)
+    {
+        int n = Mathf.Min(System.Enum.GetValues(typeof(ParameterTracker.Parameter)).Length, parameterChanges.Length);
+        for (int i = 0; i < n; i++)
+        {
+            pt.ModifyParameterLevel((ParameterTracker.Parameter)i, parameterChanges[i]);
+        }
     }
 
     #endregion

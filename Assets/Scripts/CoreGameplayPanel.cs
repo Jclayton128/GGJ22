@@ -28,8 +28,8 @@ public class CoreGameplayPanel : UI_Panel
     public void DisplayNewCard(Card newCard)
     {
         mainTMP.text = newCard.MainProblemText;
-        optionATMP.text = newCard.OptionAText;
-        optionBTMP.text = newCard.OptionBText;
+        optionATMP.text = newCard.OptionA.OptionText;
+        optionBTMP.text = newCard.OptionB.OptionText;
     }
 
     public void UpdateParametersOnPanel(ParameterPack newParameterPack)

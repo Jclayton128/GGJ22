@@ -1,0 +1,8 @@
+navigator
+pilot
+doctor
+dentist
+cook
+engineer
+janitor
+farmer

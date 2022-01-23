@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardPreparer : MonoBehaviour
+public class CardPreparer
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private History history;
+
+    public Card GetCard(int phase)
     {
-        
+        return CardData.Instance.Cards.GetNextCard(phase, history);
     }
 }
