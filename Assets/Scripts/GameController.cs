@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 {
     public enum State { Start, CoreGameplay, Endgame, Settings};
     UI_Controller uic;
+    EndgameGenerator eg;
     public Action OnStartNewGame;
 
     //settings
@@ -29,6 +30,8 @@ public class GameController : MonoBehaviour
     {
         uic = FindObjectOfType<UI_Controller>();
         SetNewState(State.Start);
+
+        eg = FindObjectOfType<EndgameGenerator>();
     }
 
     #region Public Methods
@@ -140,9 +143,9 @@ public class GameController : MonoBehaviour
                     break;
                 }
 
-
             case State.Endgame:
-                // set up the endgame state
+               
+                eg.GenerateEndGame();
                 break;
 
             case State.Settings:

@@ -92,6 +92,11 @@ public class UI_Controller : MonoBehaviour
         coreGameplayPanel.UpdateMonthsElapsed();
     }
 
+    public void UpdateEndgamePanel(string[] endgamePages)
+    {
+        endgamePanel.UpdateUIWithOutcome(endgamePages);
+    }
+
 
 
 
