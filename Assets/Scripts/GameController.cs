@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     public Action OnStartNewGame;
 
     //settings
-    int[] questionThresholds = { 3, 2 }; // once Question Count >= the current phase's threshold, advance to next phase
+    int[] questionThresholds = { 5, 10 }; // once Question Count >= the current phase's threshold, advance to next phase
     int[] monthsRangePerQuestion = { 2, 8 }; // possible time range between Cards.
 
     //state
@@ -97,7 +97,7 @@ public class GameController : MonoBehaviour
     {
         if (CurrentPhase >= questionThresholds.Length)
         {
-            Debug.Log($"End game reached via {QuestionCount}s answered.");
+            Debug.Log($"End game reached via {QuestionCount} questions answered.");
             // [TODO] enter the endgame phase victoriously - the planet was reached via sufficient questions answered.
             SetNewState(State.Endgame);
         }
