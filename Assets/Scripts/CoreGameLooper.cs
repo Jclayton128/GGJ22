@@ -84,8 +84,6 @@ public class CoreGameLooper : MonoBehaviour
     // Modify all parameter values. Allows an option to affect multiple parameters.
     private void ModifyParameters(int[] parameterChanges)
     {
-        // For UI debug/testing only - remove me once Cards have +/- to ColonistCount!
-        pt.ModifyParameterLevel(ParameterTracker.Parameter.ColonistCount, -5);
 
         int n = Mathf.Min(System.Enum.GetValues(typeof(ParameterTracker.Parameter)).Length, parameterChanges.Length);
         for (int i = 0; i < n; i++)

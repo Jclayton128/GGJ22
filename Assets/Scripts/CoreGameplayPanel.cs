@@ -9,8 +9,11 @@ public class CoreGameplayPanel : UI_Panel
     [SerializeField] TextMeshProUGUI optionATMP = null;
     [SerializeField] TextMeshProUGUI optionBTMP = null;
     [SerializeField] TextMeshProUGUI[] subjectiveParameterTMPs = null;
+
     [SerializeField] TextMeshProUGUI monthsElapsedTMP = null;
     [SerializeField] TextMeshProUGUI colonistCountTMP = null;
+    [SerializeField] TextMeshProUGUI techLevelTMP = null;
+    [SerializeField] TextMeshProUGUI moraleTMP = null;
 
     [SerializeField] GameObject[] optionButtons = null;
     [SerializeField] GameObject acceptOutcomeButton = null;
@@ -53,14 +56,14 @@ public class CoreGameplayPanel : UI_Panel
         for (int i = 0; i < subjectiveParameterTMPs.Length; i++)
         {
             subjectiveParameterTMPs[i].text = parameterPrefixes[i] + 
-parameters[(ParameterTracker.Parameter)i].ToString();  // Sheesh. If I have to write "parameter" one more time...
+                parameters[(ParameterTracker.Parameter)i].ToString();  // Sheesh. If I have to write "parameter" one more time...
         }
 
         colonistCountTMP.text = "Colonists: " + parameters[ParameterTracker.Parameter.ColonistCount].ToString();
 
-        // [TODO] Need to find a nice way to expose this in the UI. Slider? Number? Iconography? Happy/sad face?
-        // techLevelTMP.text = parameters[ParameterTracker.Parameter.TechLevel].ToString();
-        // moraleTMP.text = parameters[ParameterTracker.Parameter.Morale].ToString();
+        // [TODO] Need to find a nicer way to expose these two param in the UI. Slider? Number? Iconography? Happy/sad face?
+        techLevelTMP.text = "Tech Lvl: " + parameters[ParameterTracker.Parameter.TechLevel].ToString();
+        moraleTMP.text = "Morale: " + parameters[ParameterTracker.Parameter.Morale].ToString();
     }
 
     public void UpdateMonthsElapsed()
