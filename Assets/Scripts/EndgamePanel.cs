@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class EndgamePanel : UI_Panel
 {
@@ -12,35 +13,34 @@ public class EndgamePanel : UI_Panel
     string next = "Next Page";
     string accept = "Accept Outcome";
 
-    private enum Substate { Page0, Page1, Page2}  // 3 total pages to cover outcome seem good?
-    string[] outcomePages;
-
     //state
-    Substate currentSubstate;
+    string[] outcomePages;
+    int currentPage;
 
 
     #region Button Handlers
     public void HandleButtonPress()
     {
-        switch (currentSubstate)
+        if (currentPage < outcomePages.Length - 1)
         {
-            case Substate.Page0:
-                currentSubstate++;
-                SetSubstate(currentSubstate);
-                break;
-
-            case Substate.Page1:
-                currentSubstate++;
-                SetSubstate(currentSubstate);
-                break;
-
-            case Substate.Page2:
-                gcRef.SetNewState(GameController.State.Start);
-                break;
+            currentPage++;
+            mainTMP.text = outcomePages[currentPage];
+            if (currentPage == outcomePages.Length - 2)
+            {
+                buttonTMP.text = next;
+            }
+            else
+            {
+                buttonTMP.text = accept;
+            }
 
         }
-
+        else
+        {
+            gcRef.SetNewState(GameController.State.Start);
+        }
     }
+
 
     #endregion;
 
@@ -48,29 +48,18 @@ public class EndgamePanel : UI_Panel
     public void UpdateUIWithOutcome(string[] outcomePages)
     {
         this.outcomePages = outcomePages;
-        SetSubstate(Substate.Page0);
+        mainTMP.text = outcomePages[0];
+        if (outcomePages.Length > 1)
+        {
+            buttonTMP.text = next;
+        }
+        else
+        {
+            buttonTMP.text = accept;
+        }
     }
 
     #endregion
-    private void SetSubstate(Substate newSubstate)
-    {
-        currentSubstate = newSubstate;
-        switch (currentSubstate)
-        {
-            case Substate.Page0:
-                mainTMP.text = outcomePages[0];
-                buttonTMP.text = next;
-                break;
 
-            case Substate.Page1:
-                mainTMP.text = outcomePages[1];
-                buttonTMP.text = next;
-                break;
 
-            case Substate.Page2:
-                mainTMP.text = outcomePages[2];
-                buttonTMP.text = accept;
-                break;
-        }
-    }
 }

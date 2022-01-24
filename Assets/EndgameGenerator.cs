@@ -23,6 +23,7 @@ public class EndgameGenerator : MonoBehaviour
         //For testing:
         string[] endgamePages =
             {"These are the objective results",
+            "Here are some more interesting words about the ending",
             "These are some subjective results",
             "This is final page of outcomes. The end. " };
 
