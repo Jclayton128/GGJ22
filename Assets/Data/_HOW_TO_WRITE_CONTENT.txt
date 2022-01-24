@@ -1,0 +1,57 @@
+These files are plain text lists of names:
+
+FirstNames.txt
+LastNames.txt
+Jobs.txt
+Locations.txt
+Nationalities.txt
+Objects.txt
+
+---
+
+Cards.csv defines the scenarios presented to the player.
+It's a CSV file generated from this Google Sheet: 
+
+https://docs.google.com/spreadsheets/d/1YGCEZWAt1v99avSCrkDJtQdTk7VW-a112186_XjAiF4
+
+- Phase: 0 or 1. The game will show a certain number of phase 0 scenarios and 
+  then finish with phase 1 scenarios.
+
+- ID: A unique string. If not blank, it can be another scenario's ID, in which 
+  case that other scenario must have been shown first. Or it can be an ID.A or 
+  ID.B to require that the player chose option A or B.
+
+- Scenario: The scenario posed to the player. Can use {tags}. See below.
+
+- A and B: The player's options. Can use {tags}. See below.
+
+- A.Result and B.Result: The result text when the player chooses A or B. Can
+  use {tags}. See below.
+
+- A.Community, A.Tradition, etc.: Changes to values when the player chooses
+  option A.
+  
+- B.Community, B.Tradition, etc.: Changes to values when the player chooses
+  option B.
+  
+---
+
+TAGS:
+
+Text can contain these tags:
+
+{variable:firstname} -- assign a random first name to variable
+{variable:lastname} -- random last name
+{variable:job} -- random job
+{variable:object} -- random object
+{variable:location} -- random location on ship
+{variable:nationality} -- random nationality
+{variable:from:item1|item2|item3|...} -- assign randomly from a specific list, such as: {occupation:from:janitor|landscaper|cook}
+{id.variable} -- refer to a variable from a previous card
+
+Once you've defined a variable, you can use refer to it again using just {variable}.
+
+Example:
+
+"{name:firstname} {surname:lastname} has invented a new {device:object:life support system|water filtration system} 
+but plans to save it for their heirs to use when {surname}'s descendants reach the planet."

@@ -33,14 +33,13 @@ public class History
     public string ReplaceVariables(string cardID, string text)
     {
         if (string.IsNullOrEmpty(text) || !text.Contains("{")) return text;
-        int endPosition = text.Length - 1;
         int numReplacements = 0; // Sanity check to prevent infinite loops in case of bug.
-        while ((endPosition >= 0) && (numReplacements < MaxReplacements))
+        int tagPosition = text.IndexOf("{");
+        while (tagPosition != -1 && numReplacements < MaxReplacements)
         {
             numReplacements++;
-            int tagPosition = text.LastIndexOf("{", endPosition, System.StringComparison.OrdinalIgnoreCase);
-            endPosition = tagPosition - 1;
             text = SubstituteTag(cardID, text, tagPosition);
+            tagPosition = text.IndexOf("{");
         }
         return text;
     }
