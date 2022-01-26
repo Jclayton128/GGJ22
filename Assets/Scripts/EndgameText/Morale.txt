@@ -1,0 +1,7 @@
+low; The colonists appear shocked when they step onto their new home. Many walk around in a daze for hours, unable to comprehend what this means.
+low; A few colonists begin to babble incoherently leaving the ship. Only a couple people appear to be disturbed by the nonsensical words.
+low; Despite the promise of virgin territory, many colonists are afraid to leave the ship and need to be coaxed out by the braver explorers.
+medium; While some colonists refuse to leave the ship initially, eventually everyone comes to see their new home as a refuge.
+medium; Some colonists cry out in fear while others gleefully race out of the ship to kiss the soil. 
+high; A brass band begins playing as people joyfully exit the ship to embrace their new life and new home.
+high; Almost with one voice, the crew begins to sing the ship's anthem as the various hatches open to let in the air of humanity's new home.

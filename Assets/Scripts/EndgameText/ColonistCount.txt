@@ -1,0 +1,8 @@
+low; The few colonists that remain after the voyage struggle to establish even the basic pillars of civilization.
+low; Only a few homes are needed to house all the colonists, and life in the colony is rather lonely at first.
+
+medium; The colony doesn't have all the workers it needs, but the most important jobs are filled.
+medium; With fewer colonists, some tasks go undone, though the colony doesn't seem to suffer too much.
+
+high; The sheer manpower available makes the initial colony construction go by quickly.
+high; There almost seem to be too many colonists, though the many hands make for quicker construction.

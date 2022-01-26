@@ -1,0 +1,2 @@
+The crew cheers as the ship touches down on {planet.GetName()}. The {planet.GetRandomAdjective()} is beautiful after years of travel. You choose a {planet.GetRandomAdjective()} location and start to rebuild humanity.
+You finally reach {planet.GetName()} - humanity's last hope. You are greeted by {planet.GetRandomAdjective()} vistas and many colonist weep with joy. The hatch opens and eager colonists pour out onto the {planet.GetRandomAdjective()} terrain.

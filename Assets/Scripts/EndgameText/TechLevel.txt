@@ -1,0 +1,8 @@
+low; Unfortunately, the colonists must use crude metal tools to accomplish their work.
+low; Despite the ship's advanced construction, most of the colony's equipment is no longer useful.
+
+medium; Some of the robots fail to start, but most of the equipment is still in working order.
+medium; Though a few more advanced tools are somehow missing, many basic tools remain to help the colonists.
+
+high; Fortunately, the AI-driven robots speedily accomplish their tasks with minimal human oversight.
+high; The colonists make use of powered exoskeletons and fusion pods to quickly build roads and habitats.

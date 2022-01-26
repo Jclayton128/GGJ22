@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using System;
 
 public class EndgamePanel : UI_Panel
 {
     [SerializeField] TextMeshProUGUI mainTMP = null;
     [SerializeField] TextMeshProUGUI buttonTMP = null;
+    [SerializeField] Image planetImage = null;
 
     //settings
     string next = "Next Page";
@@ -21,6 +23,7 @@ public class EndgamePanel : UI_Panel
     #region Button Handlers
     public void HandleButtonPress()
     {
+        planetImage.gameObject.SetActive(false);
         if (currentPage < outcomePages.Length - 1)
         {
             currentPage++;
@@ -45,8 +48,11 @@ public class EndgamePanel : UI_Panel
     #endregion;
 
     #region Public Methods
-    public void UpdateUIWithOutcome(string[] outcomePages)
+    public void UpdateUIWithOutcome(string[] outcomePages, Sprite planetSprite)
     {
+        currentPage = 0;
+        planetImage.sprite = planetSprite;
+        planetImage.gameObject.SetActive(true);
         this.outcomePages = outcomePages;
         mainTMP.text = outcomePages[0];
         if (outcomePages.Length > 1)

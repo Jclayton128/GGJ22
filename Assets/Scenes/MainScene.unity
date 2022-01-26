@@ -603,6 +603,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267772963}
   m_CullTransparentMesh: 1
+--- !u!1 &269489637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 269489638}
+  - component: {fileID: 269489640}
+  - component: {fileID: 269489639}
+  m_Layer: 5
+  m_Name: PlanetImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &269489638
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269489637}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 747508852}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.3611111, y: 0.8015625}
+  m_AnchorMax: {x: 0.6388889, y: 0.9578125}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &269489639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269489637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 8a67db958ee0ddc4093b1a1545ea32a8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &269489640
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269489637}
+  m_CullTransparentMesh: 1
 --- !u!1 &280480242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,6 +1716,58 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &548473698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 548473700}
+  - component: {fileID: 548473699}
+  m_Layer: 0
+  m_Name: EndgameGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &548473699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548473698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271075666e350d440a934c94db72d677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planets:
+  - {fileID: 11400000, guid: 3ba82432d8f6d9145bdab26f2e44893f, type: 2}
+  - {fileID: 11400000, guid: 4a8ebf9e15dbdef42a1bed4746f9ff2d, type: 2}
+  - {fileID: 11400000, guid: 2c0c9c0465dacca429b80a73dc7282d8, type: 2}
+  - {fileID: 11400000, guid: 5e86efdc3b9f928499db83ebb481f459, type: 2}
+  landingSource: {fileID: 4900000, guid: d7662dc287f98564f87112693e331134, type: 3}
+  colonistCountSource: {fileID: 4900000, guid: c25d1093eed8d5b43922b183048e6c33, type: 3}
+  techLevelSource: {fileID: 4900000, guid: cf7461d029c3b844e8d4300c5dd418c9, type: 3}
+  moraleSource: {fileID: 4900000, guid: c05a4cb6a376708448b7169bb2430e33, type: 3}
+--- !u!4 &548473700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548473698}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &584198618
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,7 +2238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &747508852
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2126,6 +2253,7 @@ RectTransform:
   - {fileID: 485376049}
   - {fileID: 2067903433}
   - {fileID: 809911941}
+  - {fileID: 269489638}
   m_Father: {fileID: 932295385}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2146,6 +2274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78216d35608bf994d9e6a3ed112aa0af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainTMP: {fileID: 2067903434}
+  buttonTMP: {fileID: 407809476}
+  planetImage: {fileID: 269489639}
 --- !u!1 &809911940
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,7 +2290,7 @@ GameObject:
   - component: {fileID: 809911943}
   - component: {fileID: 809911942}
   m_Layer: 5
-  m_Name: AcceptOutcomeButton
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2180,10 +2311,10 @@ RectTransform:
   m_Father: {fileID: 747508852}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.9456, y: -205.2508}
-  m_SizeDelta: {x: 161.8912, y: 73.4984}
+  m_AnchorMin: {x: 0.27252442, y: 0.030079365}
+  m_AnchorMax: {x: 0.7222222, y: 0.14492063}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &809911942
 MonoBehaviour:
@@ -2231,7 +2362,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 747508853}
         m_TargetAssemblyTypeName: EndgamePanel, Assembly-CSharp
-        m_MethodName: HandleAcceptOutcomePress
+        m_MethodName: HandleButtonPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2855,7 +2986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1149889471
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5097,10 +5228,10 @@ RectTransform:
   m_Father: {fileID: 747508852}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.0442106, y: 0.4088434}
+  m_AnchorMin: {x: 0.0442106, y: 0.14492151}
   m_AnchorMax: {x: 0.9655858, y: 0.8312796}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -9.5095}
+  m_SizeDelta: {x: 0, y: -19.019}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2067903434
 MonoBehaviour:
@@ -5149,10 +5280,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 52.4
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0

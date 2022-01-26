@@ -61,4 +61,9 @@ public class ParameterTracker : MonoBehaviour
     {
         uic.UpdateCoreGameplayPanelWithParameters(parameters);
     }
+
+    public int GetParameterLevel(Parameter parameterToQuery)
+    {
+        return parameters[parameterToQuery];
+    }
 }
