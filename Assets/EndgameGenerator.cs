@@ -12,14 +12,25 @@ public class EndgameGenerator : MonoBehaviour
     [SerializeField] TextAsset colonistCountSource = null;
     [SerializeField] TextAsset techLevelSource = null;
     [SerializeField] TextAsset moraleSource = null;
+    [SerializeField] TextAsset positiveSource = null;
+    [SerializeField] TextAsset negativeSource = null;
+
 
     List<List<string>> colonistCountPhrases;
     List<List<string>> techLevelPhrases;
     List<List<string>> moralePhrases;
 
+    Dictionary<ParameterTracker.Parameter, List<string>> positivePhrases = new Dictionary<ParameterTracker.Parameter, List<string>>();
+    Dictionary<ParameterTracker.Parameter, List<string>> negativePhrases = new Dictionary<ParameterTracker.Parameter, List<string>>();
+
     //settings
     int threshold_low = 33;  // a parameter below this level is considered "low"
     int threshold_high = 66; // a parameter above this level is considered "high". All other values are "medium"
+    string[] parameterNames = new string[4];
+
+    //state
+    Planet currentPlanet;
+
 
 
     private void Start()
@@ -29,29 +40,98 @@ public class EndgameGenerator : MonoBehaviour
         colonistCountPhrases = ParseConcretePhrases(colonistCountSource);
         techLevelPhrases = ParseConcretePhrases(techLevelSource);
         moralePhrases = ParseConcretePhrases(moraleSource);
+        parameterNames = InitializeParameterNames();
+        positivePhrases = ParseSubjectivePhrases(positiveSource);
+        negativePhrases = ParseSubjectivePhrases(negativeSource);
     }
+
+    #region Preparation Methods
+    private string[] InitializeParameterNames()
+    {
+        string[] names = new string[4];
+        for (int i = 0; i < names.Length; i++)
+        {
+            names[i] = Enum.GetName(typeof(ParameterTracker.Parameter), i);
+        }
+        return names;
+    }
+
+    private List<List<string>> ParseConcretePhrases(TextAsset source)
+    {
+        List<string> lowPhrases = new List<string>();
+        List<string> mediumPhrases = new List<string>();
+        List<string> highPhrases = new List<string>();
+        string[] rows = source.text.Split('\n');
+        foreach (var row in rows)
+        {
+            if (String.IsNullOrEmpty(row)) break;
+            string[] parts = row.Split(';');
+            if (parts[0] == "low") lowPhrases.Add(parts[1]);
+            if (parts[0] == "medium") mediumPhrases.Add(parts[1]);
+            if (parts[0] == "high") highPhrases.Add(parts[1]);
+        }
+        List<List<string>> phrases = new List<List<string>>();
+        phrases.Add(lowPhrases);
+        phrases.Add(mediumPhrases);
+        phrases.Add(highPhrases);
+        return phrases;
+    }
+
+    private Dictionary<ParameterTracker.Parameter, List<string>> ParseSubjectivePhrases(TextAsset source)
+    {
+        Dictionary<ParameterTracker.Parameter, List<string>> dict = new Dictionary<ParameterTracker.Parameter, List<string>>();
+        for (int i = 0; i < 4; i++)
+        {
+            List<string> list = new List<string>();
+            dict.Add((ParameterTracker.Parameter)i, list);
+        }
+        string[] rows = source.text.Split('\n');
+        foreach (var row in rows)
+        {
+            if (String.IsNullOrEmpty(row)) break;
+            string[] parts = row.Split(';');
+            for (int i = 0; i < parameterNames.Length; i++)
+            {
+                if (parts[0] == parameterNames[i])
+                {
+                    dict[(ParameterTracker.Parameter)i].Add(parts[1]);
+                    break;
+                }
+                if (i == parameterNames.Length - 1 && !String.IsNullOrWhiteSpace(parts[0]))
+                    Debug.Log($"{parts[0]} doesn't match anything any parameters");
+            }
+        }
+        return dict;
+    }
+
+    #endregion
 
     public void GenerateEndGame()
     {
-        string[] endgamePages = new string[4];
+        string[] endgamePages = new string[5];
 
-        Planet planet = GetRandomPlanet();
-        endgamePages[0] = CreateLandingPage(planet);
+        currentPlanet = GetRandomPlanet();
+        endgamePages[0] = CreateLandingPage();
         endgamePages[1] = CreateConcretesPage();
         endgamePages[2] = CreateFirstSubjectivesPage();
         endgamePages[3] = CreateSecondSubjectivePage();
+        endgamePages[4] = CreateScorePage();
 
-        uic.UpdateEndgamePanel(endgamePages, planet.GetSprite());
+        uic.UpdateEndgamePanel(endgamePages, currentPlanet.GetSprite());
     }
 
-    private string CreateFirstSubjectivesPage()
+    private Planet GetRandomPlanet()
     {
-        return "first subjective page";
+        int rand = UnityEngine.Random.Range(0, planets.Length);
+        planets[rand].InitializePlanet();
+        return planets[rand];
     }
-
-    private string CreateSecondSubjectivePage()
+    private string CreateLandingPage()
     {
-        return "second subjective page";
+        string[] possibleLandingPages = landingSource.text.Split('\n');
+        int rand = UnityEngine.Random.Range(0, possibleLandingPages.Length);
+        return string.Format(possibleLandingPages[rand], 
+            currentPlanet.GetName(), currentPlanet.GetAdjective(), currentPlanet.GetAdjective()); ;
     }
 
     private string CreateConcretesPage()
@@ -121,39 +201,45 @@ public class EndgameGenerator : MonoBehaviour
             return moralePhrases[1][rand];
         }
     }
-
-    private List<List<string>> ParseConcretePhrases(TextAsset source)
+    private string CreateFirstSubjectivesPage()
     {
-        List<string> lowPhrases = new List<string>();
-        List<string> mediumPhrases = new List<string>();
-        List<string> highPhrases = new List<string>();
-        string[] rows = source.text.Split('\n');
-        foreach(var row in rows)
+        string subpage_0 = GetParameterSubpage(0);
+        string subpage_1 = GetParameterSubpage(1);
+        return subpage_0 + "\n" + subpage_1;
+    }
+
+    private string CreateSecondSubjectivePage()
+    {
+        string subpage_2 = GetParameterSubpage(2);
+        string subpage_3 = GetParameterSubpage(3);
+        return subpage_2 + "\n" + subpage_3;
+    }
+
+    private string GetParameterSubpage(int parameterIndex)
+    {
+        int magnitude = pt.GetParameterLevel((ParameterTracker.Parameter)parameterIndex);
+        if (magnitude > 0)
         {
-            if (String.IsNullOrEmpty(row)) break;
-            string[] parts = row.Split(';');
-            if (parts[0] == "low") lowPhrases.Add(parts[1]);
-            if (parts[0] == "medium") mediumPhrases.Add(parts[1]);
-            if (parts[0] == "high") highPhrases.Add(parts[1]);
+            int rand = UnityEngine.Random.Range(0,positivePhrases[(ParameterTracker.Parameter)parameterIndex].Count);
+            return positivePhrases[(ParameterTracker.Parameter)parameterIndex][rand];
         }
-        List<List<string>> phrases = new List<List<string>>();
-        phrases.Add(lowPhrases);
-        phrases.Add(mediumPhrases);
-        phrases.Add(highPhrases);
-        return phrases;
+        else
+        {
+            int rand = UnityEngine.Random.Range(0,negativePhrases[(ParameterTracker.Parameter)parameterIndex].Count);
+            return negativePhrases[(ParameterTracker.Parameter)parameterIndex][rand];
+        }
     }
 
-    private string CreateLandingPage(Planet planet)
+    private string CreateScorePage()
     {
-        string[] possibleLandingPages = landingSource.text.Split('\n');
-        int rand = UnityEngine.Random.Range(0, possibleLandingPages.Length); 
-        return string.Format(possibleLandingPages[rand], planet.GetName(), planet.GetAdjective(), planet.GetAdjective()); ;
+        int score = pt.GetParameterLevel(ParameterTracker.Parameter.ColonistCount);
+        score *= pt.GetParameterLevel(ParameterTracker.Parameter.TechLevel);
+        score *= pt.GetParameterLevel(ParameterTracker.Parameter.Morale);
+
+        string scoreBlurb = $"Due to your leadership, the last remnant of mankind remains established" +
+            $" on {currentPlanet.GetName()} for {score} years.";
+        return scoreBlurb;
     }
 
-    private Planet GetRandomPlanet()
-    {
-        int rand = UnityEngine.Random.Range(0, planets.Length);
-        planets[rand].InitializePlanet();
-        return planets[rand];
-    }
+
 }

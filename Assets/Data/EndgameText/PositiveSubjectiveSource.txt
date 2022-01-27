@@ -1,0 +1,13 @@
+Community; The colonists act as a hivemind.
+Community; The colonists value community above all.
+
+Tradition; The colonists are very traditional.
+Tradition; The colonists are wary of much change.
+
+Exploration; The colonist constantly explore their surrounds.
+Exploration; The colonists are intrigued by their new planet.
+
+Objectivity; The colonists value stoic objectivity.
+Objectivity; The colonists are annoyed by public emotions.
+
+Mispelled1; This shouldn't parse.

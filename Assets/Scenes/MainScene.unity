@@ -1754,6 +1754,8 @@ MonoBehaviour:
   colonistCountSource: {fileID: 4900000, guid: c25d1093eed8d5b43922b183048e6c33, type: 3}
   techLevelSource: {fileID: 4900000, guid: cf7461d029c3b844e8d4300c5dd418c9, type: 3}
   moraleSource: {fileID: 4900000, guid: c05a4cb6a376708448b7169bb2430e33, type: 3}
+  positiveSource: {fileID: 4900000, guid: 65dc593dc03547d42853996b9a2a82a0, type: 3}
+  negativeSource: {fileID: 4900000, guid: 69f76e87eee627046b41a77508b7abf3, type: 3}
 --- !u!4 &548473700
 Transform:
   m_ObjectHideFlags: 0
