@@ -6,3 +6,23 @@ cook
 engineer
 janitor
 farmer
+astrophysics
+priest
+therapist
+communications tech
+tailor
+barber
+laundry worker
+plumber
+historian
+stellar cartographer
+water reclamation
+bartender
+teacher
+lawyer
+counselor
+waste processing tech
+mechanic
+astrogator
+computer technician
+propulsion engineer

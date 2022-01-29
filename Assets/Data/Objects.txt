@@ -1,3 +1,20 @@
 waste disposer
 air handler
 primary viewscreen
+navigation array
+port sensors
+starboard sensors
+water reclamation unit
+mainframe
+propulsion system
+steering drive
+communications array
+nutrient processor
+surgical robot
+3d printer
+astrogation unit
+medicine synthesizer
+CO2 scrubber
+EVA suit
+robotic arm
+diagnostic computer

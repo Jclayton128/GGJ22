@@ -6,3 +6,16 @@ air scrubber facility
 genetic research lab
 childcare center
 waste processing plant
+educational facility
+chapel
+astrophysics lab
+maternity ward
+administrative offices
+entertainment booths
+kitchen
+chemical processing plant
+bridge
+mainframe deck
+life support deck
+recreation sector
+cargo bay
