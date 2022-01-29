@@ -39,7 +39,7 @@ public class CoreGameplayPanel : UI_Panel
 
     public void DisplayNewCard(Card newCard)
     {
-        mainTMP.text = newCard.MainProblemText;
+        Typewriter.Type(mainTMP, newCard.MainProblemText); // mainTMP.text = newCard.MainProblemText;
         optionATMP.text = newCard.OptionA.OptionText;
         optionBTMP.text = newCard.OptionB.OptionText;
         ChangeSubstate(Substate.PresentCardScenario);
@@ -47,7 +47,7 @@ public class CoreGameplayPanel : UI_Panel
 
     public void DisplayCardOutcome(string outcomeText)
     {
-        mainTMP.text = outcomeText;
+        Typewriter.Type(mainTMP, outcomeText); // mainTMP.text = outcomeText;
         ChangeSubstate(Substate.ShowCardOutcome);
     }
 
