@@ -5,3 +5,4 @@ medium; While some colonists refuse to leave the ship initially, eventually ever
 medium; Some colonists cry out in fear while others gleefully race out of the ship to kiss the soil. 
 high; A brass band begins playing as people joyfully exit the ship to embrace their new life and new home.
 high; Almost with one voice, the crew begins to sing the ship's anthem as the various hatches open to let in the air of humanity's new home.
+high; The crew's morale is high, and their collective excitement is palpable as they rush out onto their new home.
