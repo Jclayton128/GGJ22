@@ -23,6 +23,10 @@ public class StringLibrary
         }
         name = textAsset.name;
         list = new List<string>(textAsset.text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries));
+        for (int i = 0; i < list.Count; i++)
+        {
+            list[i] = list[i].Trim();
+        }
         ShuffleList();
     }
 
