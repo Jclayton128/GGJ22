@@ -59,11 +59,11 @@ public class CoreGameplayPanel : UI_Panel
                 parameters[(ParameterTracker.Parameter)i].ToString();  // Sheesh. If I have to write "parameter" one more time...
         }
 
-        colonistCountTMP.text = "Colonists: " + parameters[ParameterTracker.Parameter.ColonistCount].ToString();
+        colonistCountTMP.text = parameters[ParameterTracker.Parameter.ColonistCount].ToString();
 
         // [TODO] Need to find a nicer way to expose these two param in the UI. Slider? Number? Iconography? Happy/sad face?
-        techLevelTMP.text = "Tech Lvl: " + parameters[ParameterTracker.Parameter.TechLevel].ToString();
-        moraleTMP.text = "Morale: " + parameters[ParameterTracker.Parameter.Morale].ToString();
+        techLevelTMP.text = parameters[ParameterTracker.Parameter.TechLevel].ToString();
+        moraleTMP.text = parameters[ParameterTracker.Parameter.Morale].ToString();
     }
 
     public void UpdateMonthsElapsed()
@@ -71,7 +71,7 @@ public class CoreGameplayPanel : UI_Panel
         int years = gcRef.MonthsElapsed / 12;
         int months = gcRef.MonthsElapsed % 12;
 
-        monthsElapsedTMP.text = $"Time: {years}y {months}m";
+        monthsElapsedTMP.text = $"{years}y {months}m";
 
     }
 

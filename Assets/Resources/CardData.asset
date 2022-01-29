@@ -18,7 +18,7 @@ MonoBehaviour:
   objectsSource: {fileID: 4900000, guid: 189b9568dd4293d46814e548f2db9962, type: 3}
   locationsSource: {fileID: 4900000, guid: 28a9aca39a81324478eba9e1014df45a, type: 3}
   nationalitiesSource: {fileID: 4900000, guid: 5dd1d29c22a38d842b67e47bed2bf5bf, type: 3}
-  cardsSource: {fileID: 4900000, guid: e3217d5d6ee2f04488aeafb055b91a61, type: 3}
+  cardsSource: {fileID: 4900000, guid: 569c646b0b3de4d46bdc8cd742a37298, type: 3}
   firstNameFallback: John
   lastNameFallback: Doe
   jobFallback: Engineer
