@@ -49,9 +49,23 @@ Text can contain these tags:
 {variable:from:item1|item2|item3|...} -- assign randomly from a specific list, such as: {occupation:from:janitor|landscaper|cook}
 {id.variable} -- refer to a variable from a previous card
 
-Once you've defined a variable, you can use refer to it again using just {variable}.
+Once you've defined a variable, you can refer to it again using just {variable}.
 
 Example:
 
 "{name:firstname} {surname:lastname} has invented a new {device:object:life support system|water filtration system} 
 but plans to save it for their heirs to use when {surname}'s descendants reach the planet."
+
+---
+
+ENDGAME TEXT:
+
+Endgame Text
+
+There are a set of files in Assets / Data / EndgameText. The game generates 
+end-of-game result text by combining lines from the files. Each line has this form:
+
+low/medium/high; text
+
+When the corresponding value (e.g., ColonistCount) is low, it will randomly choose 
+one of the lines that starts with “low;”. Same for medium and high.
