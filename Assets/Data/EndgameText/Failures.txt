@@ -1,8 +1,8 @@
-colonists; The ship speeds on through space. Various chirps and chimes eventually give way to alarms and klaxxons as critical systems eventually break down. The ship is slowly dying, though there are no humans left aboard to care. Eventually, many eons later, the ship powers down. Its running lights slowly wink out, and along with them, mankind's last hope.
-colonists; Humanity last's hope has expired along with the breath of the last human. Although the species made it many, many years, this last seed of the species was unable to meet the challenges of a cruel, unforgiving universe.
+colonists; The ship sped on through space, though with no living humans left to steer it. Eventually, many eons later, the ship powered down. Its running lights slowly winked out, and along with them, mankind's last hope.
+colonists; Humanity's hope expired along with the breath of the last human. Although the species made it many, many years, this last seed of the species was unable to meet the challenges of a cruel, unforgiving universe.
 
-tech; Although the ship was well-engineered by some of the best minds, it died...
-tech; The ship fell apart.
+tech; Although the ship was well-engineered by some of the best minds, it still was limited by the technology of the day. With aging parts and limited replacement capability, it was just a matter of time before it succumbed to the travails of any long voyage, taking the last of humanity with it.
+tech; The ship's systems faithfully bore the strain of many generations of humanity. Unfortunately, this last generation was not up to the tasks of keeping it running for the home stretch. As the life support finally failed, the voices of the last humans faded away.
 
-morale; The crew has no morale.
-morale; The crew has no spirit.
+morale; The ship was still running and the crew was still serving. However, as morality, motivation, and sanity ran out, so did the will to complete the mission. As the crew structure broke down, the ship lost its way and eventually suffered an inglorious end.
+morale; Although the ship had sufficient fuel, the crew was another matter. With the accumulated woes and misery of too many years in space, the last humans lost the will to live and simply gave up, leaving the ship to drift aimlessly through the void.
