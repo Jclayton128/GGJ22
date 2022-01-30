@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     EndgameGenerator eg;
     public Action OnStartNewGame;
 
-    //settings
+    //settings -- NOTE: We now read this from the CardData asset in the Resources folder.
     int[] questionThresholds = { 5, 10 }; // once Question Count >= the current phase's threshold, advance to next phase
     int[] monthsRangePerQuestion = { 2, 8 }; // possible time range between Cards.
 
@@ -21,10 +21,10 @@ public class GameController : MonoBehaviour
     public int MonthsElapsed { get; private set; } // This is a variable that roughly matches Question Count for the UI.
     public int CurrentPhase { get; private set; }
 
-    /// <summary>
-    /// **This bool could be rendered obsolete by simply checking if number of questions presented to player is > zero;
-    /// </summary>
-    bool isCurrentlyInGame = false;
+    ///// <summary>
+    ///// **This bool could be rendered obsolete by simply checking if number of questions presented to player is > zero;
+    ///// </summary>
+    //bool isCurrentlyInGame = false;
 
     void Start()
     {
@@ -32,6 +32,9 @@ public class GameController : MonoBehaviour
         SetNewState(State.Start);
 
         eg = FindObjectOfType<EndgameGenerator>();
+
+        questionThresholds = CardData.Instance.QuestionThresholds;
+        monthsRangePerQuestion = CardData.Instance.MonthsRangePerQuestion;
     }
 
     #region Public Methods

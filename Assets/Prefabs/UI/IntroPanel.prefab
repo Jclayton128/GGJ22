@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Epic Title
+  m_text: Binary Star
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c04a3131aed7cd6469ddc3bcedbc6ab7, type: 2}
   m_sharedMaterial: {fileID: -4039184282797832141, guid: c04a3131aed7cd6469ddc3bcedbc6ab7, type: 2}
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.45
+  m_fontSize: 46.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.5
+  m_fontSize: 34.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -672,8 +672,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Earth is gone. We left it many years ago once it became clear that The
     Hard Times would not end. This generation ship is the last remnant of mankind.
-    \nYou must shepherd the colonist on this dangerous voyage to ensure that humanity
-    remains alive. Along the way, your choice will indelibly mark the type of civilization
+    \nYou must shepherd the colonists on this dangerous voyage to ensure that humanity
+    survives. Along the way, your choices will indelibly mark the type of civilization
     that arises on mankind's new home - if you can survive the trip."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c04a3131aed7cd6469ddc3bcedbc6ab7, type: 2}
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.7
+  m_fontSize: 14.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

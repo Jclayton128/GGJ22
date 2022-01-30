@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class CardData : ScriptableObject
 {
-
+    [Header("Data Files")]
     [SerializeField] private TextAsset firstNamesSource;
     [SerializeField] private TextAsset lastNamesSource;
     [SerializeField] private TextAsset jobsSource;
@@ -16,12 +16,18 @@ public class CardData : ScriptableObject
     [SerializeField] private TextAsset nationalitiesSource;
     [SerializeField] private TextAsset cardsSource;
 
+    [Header("Fallback Values")]
     [SerializeField] private string firstNameFallback = "John";
     [SerializeField] private string lastNameFallback = "Doe";
     [SerializeField] private string jobFallback = "Engineer";
     [SerializeField] private string objectFallback = "climate controls";
     [SerializeField] private string locationFallback = "ship";
     [SerializeField] private string nationalityFallback = "human";
+
+    [Header("Game Length")]
+    [Tooltip("How many cards to show in phase 0 and phase 1.")]
+    [SerializeField] private int[] questionThresholds = { 5, 10 }; // once Question Count >= the current phase's threshold, advance to next phase
+    [SerializeField] private int[] monthsRangePerQuestion = { 2, 8 }; // possible time range between Cards.
 
     private static CardData instance = null;
 
@@ -41,6 +47,9 @@ public class CardData : ScriptableObject
     public StringLibrary Locations { get; private set; }
     public StringLibrary Nationalities { get; private set; }
     public CardLibrary Cards { get; private set; }
+
+    public int[] QuestionThresholds { get { return questionThresholds; } }
+    public int[] MonthsRangePerQuestion { get { return monthsRangePerQuestion; } }
 
     public static CardData Instance
     {
