@@ -1,0 +1,8 @@
+colonists; The ship speeds on through space. Various chirps and chimes eventually give way to alarms and klaxxons as critical systems eventually break down. The ship is slowly dying, though there are no humans left aboard to care. Eventually, many eons later, the ship powers down. Its running lights slowly wink out, and along with them, mankind's last hope.
+colonists; Humanity last's hope has expired along with the breath of the last human. Although the species made it many, many years, this last seed of the species was unable to meet the challenges of a cruel, unforgiving universe.
+
+tech; Although the ship was well-engineered by some of the best minds, it died...
+tech; The ship fell apart.
+
+morale; The crew has no morale.
+morale; The crew has no spirit.
