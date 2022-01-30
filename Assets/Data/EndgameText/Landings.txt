@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 The crew cheers as the ship touches down on {0} at dusk, greeted by its twin stars. The {1} planet is beautiful after years of travel. You choose a {2} location and start to rebuild humanity.
 You finally reach {0} - humanity's last hope. You are greeted by {1} vistas and many colonist weep with joy. The hatch opens and eager colonists pour out onto the {2} terrain.
+=======
+The crew cheers as the ship touches down on {0}. The {1} planet is beautiful after years of travel. You choose a {2} location and start to rebuild humanity.
+You finally reach {0} - humanity's last hope. You are greeted by {1} vistas and many colonists weep with joy. The hatch opens and eager colonists pour out onto the {2} terrain.
+>>>>>>> 331019f23b2000f16f8664885f275fd1d881c530
 You touchdown on {0} at dawn. The twin suns cast dazzling shadows over the {1} landscape. The crew begins to cheer as the light reveals a {2} landscape.
 The ship lands gracefully upon {0}, and the viewports reveal a {1} sight. Humanity's new home will be somewhere here in the {2} panorama.
