@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class SettingsPanel : UI_Panel
 {
+    AudioController ac;
+   
+    protected override void Start()
+    {
+        base.Start();
+        ac = FindObjectOfType<AudioController>();
+    }
 
     public void HandleSFXPress()
     {
-        Debug.Log("SFX button was pressed");
+        ac.ToggleSFX();
     }
 
     public void HandleMusicPress()
     {
-        Debug.Log("Music button was pressed");
+        ac.ToggleMusic();
     }
 
     public void HandleBackButton()

@@ -30,6 +30,11 @@ public class Typewriter : MonoBehaviour
         audioSource.clip = Resources.Load<AudioClip>(AudioClipName);
     }
 
+    public void SetVolume(float volume)
+    {
+        audioSource.volume = volume;
+    }
+
     private void TypeText(string text)
     {
         StopAllCoroutines();
