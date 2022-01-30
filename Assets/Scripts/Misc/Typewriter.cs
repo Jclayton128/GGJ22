@@ -15,7 +15,7 @@ public class Typewriter : MonoBehaviour
     }
 
     private const int CharactersPerSecond = 100;
-    private const float AudioVolume = 0.5f;
+    private const float AudioVolume = 0.25f;
     private const string AudioClipName = "Typewriter";
 
     private TextMeshProUGUI tmp;
