@@ -7,6 +7,7 @@ public class EndgameGenerator : MonoBehaviour
 {
     UI_Controller uic;
     ParameterTracker pt;
+    GameController gcRef;
     [SerializeField] Planet[] planets = null;
     [SerializeField] TextAsset landingSource = null;
     [SerializeField] TextAsset colonistCountSource = null;
@@ -14,12 +15,14 @@ public class EndgameGenerator : MonoBehaviour
     [SerializeField] TextAsset moraleSource = null;
     [SerializeField] TextAsset positiveSource = null;
     [SerializeField] TextAsset negativeSource = null;
-
+    [SerializeField] TextAsset failureSource = null;
+    [SerializeField] Sprite failureSprite = null;
 
     List<List<string>> colonistCountPhrases;
     List<List<string>> techLevelPhrases;
     List<List<string>> moralePhrases;
 
+    Dictionary<ParameterTracker.Parameter, List<string>> failurePhrases = new Dictionary<ParameterTracker.Parameter, List<string>>();
     Dictionary<ParameterTracker.Parameter, List<string>> positivePhrases = new Dictionary<ParameterTracker.Parameter, List<string>>();
     Dictionary<ParameterTracker.Parameter, List<string>> negativePhrases = new Dictionary<ParameterTracker.Parameter, List<string>>();
 
@@ -35,6 +38,7 @@ public class EndgameGenerator : MonoBehaviour
 
     private void Start()
     {
+        gcRef = FindObjectOfType<GameController>();
         uic = FindObjectOfType<UI_Controller>();
         pt = FindObjectOfType<ParameterTracker>();
         colonistCountPhrases = ParseConcretePhrases(colonistCountSource);
@@ -43,7 +47,10 @@ public class EndgameGenerator : MonoBehaviour
         parameterNames = InitializeParameterNames();
         positivePhrases = ParseSubjectivePhrases(positiveSource);
         negativePhrases = ParseSubjectivePhrases(negativeSource);
+        failurePhrases = ParseFailurePhrases(failureSource);
     }
+
+
 
     #region Preparation Methods
     private string[] InitializeParameterNames()
@@ -54,6 +61,27 @@ public class EndgameGenerator : MonoBehaviour
             names[i] = Enum.GetName(typeof(ParameterTracker.Parameter), i);
         }
         return names;
+    }
+
+    private Dictionary<ParameterTracker.Parameter, List<string>> ParseFailurePhrases(TextAsset failureSource)
+    {
+        Dictionary<ParameterTracker.Parameter, List<string>> dict = new Dictionary<ParameterTracker.Parameter, List<string>>();
+        List<string> list1 = new List<string>();
+        List<string> list2 = new List<string>();
+        List<string> list3 = new List<string>();
+        dict.Add(ParameterTracker.Parameter.ColonistCount, list1);
+        dict.Add(ParameterTracker.Parameter.TechLevel, list2);
+        dict.Add(ParameterTracker.Parameter.Morale, list3);
+        string[] rows = failureSource.text.Split('\n');
+        foreach (var row in rows)
+        {
+            if (String.IsNullOrEmpty(row)) break;
+            string[] parts = row.Split(';');
+            if (parts[0] == "colonists") dict[ParameterTracker.Parameter.ColonistCount].Add(parts[1]);
+            if (parts[0] == "tech") dict[ParameterTracker.Parameter.TechLevel].Add(parts[1]);
+            if (parts[0] == "morale") dict[ParameterTracker.Parameter.Morale].Add(parts[1]);
+        }
+        return dict;
     }
 
     private List<List<string>> ParseConcretePhrases(TextAsset source)
@@ -108,16 +136,21 @@ public class EndgameGenerator : MonoBehaviour
 
     public void GenerateEndGame()
     {
-        string[] endgamePages = new string[5];
-
-        currentPlanet = GetRandomPlanet();
-        endgamePages[0] = CreateLandingPage();
-        endgamePages[1] = CreateConcretesPage();
-        endgamePages[2] = CreateFirstSubjectivesPage();
-        endgamePages[3] = CreateSecondSubjectivePage();
-        endgamePages[4] = CreateScorePage();
-
-        uic.UpdateEndgamePanel(endgamePages, currentPlanet.GetSprite());
+        if (pt.IsFailed)
+        {   
+            uic.UpdateEndgamePanel(CreateFailurePages(), failureSprite);
+        }
+        else
+        {
+            string[] endgamePages = new string[5];
+            currentPlanet = GetRandomPlanet();
+            endgamePages[0] = CreateLandingPage();
+            endgamePages[1] = CreateConcretesPage();
+            endgamePages[2] = CreateFirstSubjectivesPage();
+            endgamePages[3] = CreateSecondSubjectivePage();
+            endgamePages[4] = CreateScorePage();
+            uic.UpdateEndgamePanel(endgamePages, currentPlanet.GetSprite());
+        }
     }
 
     private Planet GetRandomPlanet()
@@ -241,5 +274,14 @@ public class EndgameGenerator : MonoBehaviour
         return scoreBlurb;
     }
 
+    private string[] CreateFailurePages()
+    {
+        string[] pages = new string[2];
+        int rand = UnityEngine.Random.Range(0, failurePhrases[pt.GetFailingParameter()].Count);
+        pages[0] = failurePhrases[pt.GetFailingParameter()][rand];
+
+        pages[1] = $"At least you made it {gcRef.MonthsElapsed} months longer than the last captain...";
+        return pages;
+    }
 
 }

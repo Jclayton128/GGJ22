@@ -17,7 +17,8 @@ public class ParameterTracker : MonoBehaviour
 
     //state
     Dictionary<Parameter, int> parameters = new Dictionary<Parameter, int>();
-
+    Parameter failureMode;
+    public bool IsFailed { get; private set; }
     private void Start()
     {
         gcRef = FindObjectOfType<GameController>();
@@ -48,13 +49,22 @@ public class ParameterTracker : MonoBehaviour
         parameters[Parameter.ColonistCount] = startingColonistCount;
         parameters[Parameter.TechLevel] = startingTechLevel;
         parameters[Parameter.Morale] = startingMorale;
-
+        IsFailed = false;
         uic.UpdateCoreGameplayPanelWithParameters(parameters);
     }
 
     public void ModifyParameterLevel(Parameter parameterToAdjust, int amountToAdjust)
     {
         parameters[parameterToAdjust] += amountToAdjust;
+
+        if (parameters[Parameter.ColonistCount] * parameters[Parameter.TechLevel] * parameters[Parameter.Morale] == 0)
+        {
+            if (parameters[Parameter.ColonistCount] <= 0) failureMode = Parameter.ColonistCount;
+            if (parameters[Parameter.TechLevel] <= 0) failureMode = Parameter.TechLevel;
+            if (parameters[Parameter.Morale] <= 0) failureMode = Parameter.Morale;
+            IsFailed = true;
+            gcRef.SetNewState(GameController.State.Endgame);
+        }
     }
 
     public void PushParametersToUI()
@@ -66,4 +76,10 @@ public class ParameterTracker : MonoBehaviour
     {
         return parameters[parameterToQuery];
     }
+
+    public Parameter GetFailingParameter()
+    {
+        return failureMode;
+    }
+
 }
