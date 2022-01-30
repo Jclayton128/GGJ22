@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -34,7 +33,10 @@ public class Typewriter : MonoBehaviour
     private void TypeText(string text)
     {
         StopAllCoroutines();
-        StartCoroutine(TypeCharacters(text));
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(TypeCharacters(text));
+        }
     }
 
     private IEnumerator TypeCharacters(string text)
