@@ -25,3 +25,5 @@ MonoBehaviour:
   objectFallback: climate controls
   locationFallback: ship
   nationalityFallback: human
+  questionThresholds: 1900000028000000
+  monthsRangePerQuestion: 0200000008000000

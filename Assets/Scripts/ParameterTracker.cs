@@ -14,6 +14,7 @@ public class ParameterTracker : MonoBehaviour
     int startingColonistCount = 100;
     int startingTechLevel = 100;
     int startingMorale = 100;
+    int failureLevel = 30;
 
     //state
     Dictionary<Parameter, int> parameters = new Dictionary<Parameter, int>();
@@ -57,11 +58,21 @@ public class ParameterTracker : MonoBehaviour
     {
         parameters[parameterToAdjust] += amountToAdjust;
 
-        if (parameters[Parameter.ColonistCount] * parameters[Parameter.TechLevel] * parameters[Parameter.Morale] == 0)
+        if (parameters[Parameter.ColonistCount] <= failureLevel)
         {
-            if (parameters[Parameter.ColonistCount] <= 0) failureMode = Parameter.ColonistCount;
-            if (parameters[Parameter.TechLevel] <= 0) failureMode = Parameter.TechLevel;
-            if (parameters[Parameter.Morale] <= 0) failureMode = Parameter.Morale;
+            failureMode = Parameter.ColonistCount;
+            IsFailed = true;
+            gcRef.SetNewState(GameController.State.Endgame);
+        }
+        if (parameters[Parameter.TechLevel] <= failureLevel)
+        {
+            failureMode = Parameter.TechLevel;
+            IsFailed = true;
+            gcRef.SetNewState(GameController.State.Endgame);
+        }
+        if (parameters[Parameter.Morale] <= failureLevel)
+        {
+            failureMode = Parameter.Morale;
             IsFailed = true;
             gcRef.SetNewState(GameController.State.Endgame);
         }

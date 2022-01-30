@@ -27,8 +27,8 @@ public class EndgameGenerator : MonoBehaviour
     Dictionary<ParameterTracker.Parameter, List<string>> negativePhrases = new Dictionary<ParameterTracker.Parameter, List<string>>();
 
     //settings
-    int threshold_low = 33;  // a parameter below this level is considered "low"
-    int threshold_high = 66; // a parameter above this level is considered "high". All other values are "medium"
+    int threshold_low = 50;  // a parameter below this level is considered "low"
+    int threshold_high = 70; // a parameter above this level is considered "high". All other values are "medium"
     string[] parameterNames = new string[4];
 
     //state
@@ -270,7 +270,7 @@ public class EndgameGenerator : MonoBehaviour
         score *= pt.GetParameterLevel(ParameterTracker.Parameter.Morale);
 
         string scoreBlurb = $"Due to your leadership, the last remnant of mankind remains established" +
-            $" on {currentPlanet.GetName()} for {score} years.";
+            $" on {currentPlanet.GetName()} for {Mathf.RoundToInt(score/36f)} years.";
         return scoreBlurb;
     }
 
