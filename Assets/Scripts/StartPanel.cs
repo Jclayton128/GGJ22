@@ -7,6 +7,6 @@ public class StartPanel : UI_Panel
 
     public void HandleStartGamePress()
     {
-        gcRef.SetNewState(GameController.State.CoreGameplay);
+        gcRef.SetNewState(GameController.State.Intro);
     }
 }

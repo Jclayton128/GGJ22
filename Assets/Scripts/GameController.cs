@@ -5,7 +5,7 @@ using System;
 
 public class GameController : MonoBehaviour
 {
-    public enum State { Start, CoreGameplay, Endgame, Settings};
+    public enum State { Start, CoreGameplay, Endgame, Settings, Intro};
     UI_Controller uic;
     EndgameGenerator eg;
     public Action OnStartNewGame;

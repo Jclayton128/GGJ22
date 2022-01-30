@@ -12,6 +12,7 @@ public class UI_Controller : MonoBehaviour
     CoreGameplayPanel coreGameplayPanel;
     EndgamePanel endgamePanel;
     SettingsPanel settingsPanel;
+    IntroPanel introPanel;
 
     private void Start()
     {
@@ -31,6 +32,7 @@ public class UI_Controller : MonoBehaviour
         coreGameplayPanel = FindObjectOfType<CoreGameplayPanel>();
         endgamePanel = FindObjectOfType<EndgamePanel>();
         settingsPanel = FindObjectOfType<SettingsPanel>();
+        introPanel = FindObjectOfType<IntroPanel>();
     }
 
     private void HideAllPanels()
@@ -66,6 +68,10 @@ public class UI_Controller : MonoBehaviour
 
             case GameController.State.Settings:
                 settingsPanel.ShowHideElements(true);
+                return;
+
+            case GameController.State.Intro:
+                introPanel.ShowHideElements(true);
                 return;
         }
     }
